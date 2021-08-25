@@ -66,7 +66,6 @@ export default {
   .querySearch {
     margin: 0 auto;
     width: 700px;
-    max-width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 19px;

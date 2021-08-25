@@ -42,9 +42,10 @@
                     <modal 
                         name="diagnose-result"
                         :width="1000"
-                        :height="4000"
+                        :height="3000"
                         :adaptive="true"
                         :draggable="true"
+                        styles="background: none"
                         classes="jumbotron"
                     >
                     <div id="result-box" class="jumbotron" v-for="diagnose in diagnoseInfo" :key="diagnose.ID">
@@ -53,8 +54,10 @@
                                 <h1 id="diagnose">"{{diagnose.Issue.Name}}"</h1> <br>
                                 <h4>Checked with {{Math.round(diagnose.Issue.Accuracy)}}% accuracy</h4>
                                 <p>For further notice please visit The doctor with "{{diagnose.Specialisation[0].Name}}" Specialisation</p>
-                                <button id="save-btn" @click.prevent="saveHistory" class="btn btn-lg btn-primary fw-bold text-uppercase" type="button" v-if="loginInfo">Save Diagnose</button>
-                                <button id="cancel-btn" @click.prevent="hideModal" class="btn btn-lg btn-danger fw-bold text-uppercase" type="button" v-if="loginInfo">Cancel</button>
+                                <div class="d-flex flex-row w-4 justify-content-around">
+                                    <button id="save-btn" @click.prevent="saveHistory(diagnose)" class="btn btn-lg btn-primary fw-bold text-uppercase" type="button" v-if="loginInfo">Save Diagnose</button>
+                                    <button id="cancel-btn" @click.prevent="hideModal" class="btn btn-lg btn-danger fw-bold text-uppercase" type="button" v-if="loginInfo">Cancel</button>
+                                </div>
                                 <button id="ok-btn" @click.prevent="hideModal" class="btn btn-lg btn-primary fw-bold text-uppercase" type="button" v-if="!loginInfo">Ok</button>
                             </center>
                     </div>
@@ -104,6 +107,10 @@ export default {
         },
         hideModal() {
             this.$modal.hide('diagnose-result')
+        },
+        saveHistory(diagnose) {
+            this.$store.dispatch(`saveDiagnosis`, diagnose)
+            this.$modal.hide('diagnose-result')
         }
     },
     created() {
@@ -144,6 +151,10 @@ export default {
 
 option {
     border-radius: 15px;
+}
+
+.vm--modal {
+    background: none !important;
 }
 
 .vue-tags-input {

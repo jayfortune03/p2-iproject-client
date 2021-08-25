@@ -1,7 +1,6 @@
 <template>
     <nav class="navbar navbar-expand-lg shadow">
         <div class="container-fluid">
-
             <button type="button" id="sidebarCollapse" class="navbar-btn">
                 <span></span>
                 <span></span>
@@ -61,6 +60,7 @@
                             <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
                           </svg>
                           Logout
+                            <!-- <GoogleLogin :params="params" :logoutButton=true>Logout</GoogleLogin> -->
                         </a>
                     </div>
                 </li>
@@ -71,18 +71,43 @@
 </template>
 
 <script>
+import GoogleLogin from 'vue-google-login'
 export default {
     name: `Navbar`,
     computed: {
         loginInfo() {
             return this.$store.state.access_token
+        },
+        gauthInfo() {
+            return this.$store.state.gauthInfo
+        }
+    },
+    data() {
+        return {
+            toggleClass:``,
+            params: {
+                client_id: "194356169649-a6l157kiil38vr2p5h0fqarf9h9b035j.apps.googleusercontent.com"
+            },
+            renderParams: {
+                width: 50,
+                height: 50,
+                longtitle: true
+            }
         }
     },
     methods: {
         logoutInfo() {
-            // var auth2 = gapi.auth2.getAuthInstance();
-            this.$store.dispatch(`logOut`, {access_token: null})
+            var auth2 = gapi.auth2.getAuthInstance();
+            this.$store.dispatch(`logOut`, {access_token: null, auth: auth2})
+        },
+        togglerClass() {
+            this.toggleClass == `` ? this.toggleClass = `active` : this.toggleClass = ''
+            console.log(this.toggleClass)
+            this.$store.commit(`TOGGLE_SIDEBAR`, this.toggleClass)
         }
+    },
+    components: {
+        GoogleLogin
     }
 }
 </script>

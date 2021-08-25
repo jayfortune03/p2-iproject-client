@@ -12,6 +12,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     access_token: localStorage.getItem(`access_token`),
+    gauthInfo: ``,
+    toggler: ``,
     symptoms: [],
     diagnose: [],
     userData: {}
@@ -33,7 +35,13 @@ export default new Vuex.Store({
       state.diagnose = payload
     },
     LOGOUT_HANDLER(state, payload) {
-      state.access_token = payload
+      state.access_token = payload.access_token
+    },
+    GAUTH_INFO(state, payload) {
+      state.gauthInfo = payload
+    },
+    TOGGLE_SIDEBAR(state, payload) {
+      state.toggler = payload
     }
   },
   actions: {
@@ -88,8 +96,16 @@ export default new Vuex.Store({
               idToken:payload.idToken
           }
       })
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Login Success! ',
+          showConfirmButton: false,
+          timer: 1500
+        })
         localStorage.setItem(`access_token`, gauth.data.access_token)
         context.commit(`GAUTH_HANDLER`, {access_token: gauth.data.access_token})
+        context.commit(`GAUTH_INFO`, payload.auth2)
         router.push(`/`)
       } catch (err) {
         Swal.fire({
@@ -102,13 +118,12 @@ export default new Vuex.Store({
     },
 
     async logOut(context, payload) {
-      // payload.auth.signOut()
-      // .then(function () {
-      //   console.log('User signed out.');
-      // });
       localStorage.removeItem(`access_token`)
       context.commit(`LOGOUT_HANDLER`, {access_token: null})
-      router.push(`/`)
+      payload.auth.signOut()
+      .then(function () {
+        console.log('User signed out.');
+      });
       Swal.fire({
         position: 'top-end',
         icon: 'success',
@@ -116,6 +131,38 @@ export default new Vuex.Store({
         showConfirmButton: false,
         timer: 1500
       })
+      router.push(`/login`)
+    },
+
+    async register(context, payload) {
+      try {
+        const register = await baseServer.post(`/register`, payload)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Register Success! Please Login to Continue!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        router.push(`/login`)
+      } catch (err) {
+        let errors = err.response.data.message
+        if (Array.isArray(errors)) {
+            errors.forEach(el => {
+                Vue.$toast.open({
+                    message: `${el}`,
+                    type: "error",
+                    position: "top-right",
+                })
+            })
+        } else {
+            Vue.$toast.open({
+                message: `${errors}`,
+                type: "error",
+                position: "top-right",
+            })     
+        }
+      }
     },
 
     async getSymptoms(context, payload) {
@@ -155,6 +202,37 @@ export default new Vuex.Store({
         context.commit(`DIAGNOSIS_RESULT`, diagnosis.data)
       } catch (err) {
         console.log(err)
+      }
+    },
+
+    async saveDiagnosis(context, payload) {
+      try {
+        const diagnosis = await baseServer({
+          method: `POST`,
+          url:`/user/sickness`,
+          data: {
+            name: payload.Issue.Name,
+            profName: payload.Issue.ProfName,
+            icdName: payload.Issue.IcdName,
+            accuracy: payload.Issue.Accuracy,
+            ranking: payload.Issue.Ranking,
+            specialisation: payload.Specialisation[0].Name
+          },
+          headers: {access_token: localStorage.getItem(`access_token`)}
+        })
+        Vue.$toast.open({
+          message: `Successfully added to your history!`,
+          type: "success",
+          position: "top-right",
+        })  
+      } catch (err) {
+        console.log(err)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops.. It seems like there is an error ocurring here!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     },
 
