@@ -40,6 +40,12 @@ const routes = [
 
     component: () => import( '../views/aboutPage.vue')
   },
+  {
+    path: '/profile',
+    name: 'My Profile',
+
+    component: () => import( '../views/profilePage.vue')
+  }
 ]
 
 const router = new VueRouter({
@@ -48,18 +54,18 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   let access_token = localStorage.getItem(`access_token`)
+router.beforeEach((to, from, next) => {
+  let access_token = localStorage.getItem(`access_token`)
 
-//   let authPages = to.path === `/login` || to.path === `/register`
+  let authPages = to.path === `/login` || to.path === `/register`
 
-//   if (!access_token && !authPages) {
-//     next({ path: `/login` })
-//   } else if (access_token && authPages) {
-//     next({ path: `/` })
-//   } else {
-//     next()
-//   }
-// })
+  if (!access_token && to.name === `My Profile`) {
+    next({ path: `/login` })
+  } else if (access_token && authPages) {
+    next({ path: `/` })
+  } else {
+    next()
+  }
+})
 
 export default router

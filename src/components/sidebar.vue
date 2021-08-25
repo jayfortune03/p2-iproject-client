@@ -30,10 +30,14 @@
             </ul>
         </li>
         <li>
-            <a href="#">ABOUT</a>
+            <router-link to="/about">
+                ABOUT US
+            </router-link>
         </li>
-        <li>
-            <a href="#">MY PROFILE</a>
+        <li v-if="loginInfo">
+            <router-link to="/profile">
+                MY PROFILE
+            </router-link>
         </li>
     </ul>
 

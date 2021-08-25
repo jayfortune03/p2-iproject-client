@@ -12,7 +12,7 @@
               <h1 id="welcome-message" v-if="!loginInfo"><b>Hello there !</b></h1> <br>
               <h2 id="help-message">How can I help ?</h2> <br> <br>
             </center>
-            <div class="d-flex right-text flex-row w-4 justify-content-between">
+            <div class="d-flex right-text flex-row w-4 col-xs-4 justify-content-between">
               <router-link to="/diagnose" id="btn-diagnose" class="btn btn-lg fw-bold text-uppercase">
                 DIAGNOSE
               </router-link>
@@ -140,6 +140,7 @@ export default {
 #btn-medicine {
   height:100px;
   width:400px;
+  max-width: 100%;
   font-size: 40px;
   background: #f19b9b;
   font-weight: bolder;
@@ -149,6 +150,7 @@ export default {
 #btn-diagnose {
   height:100px;
   width:400px;
+  max-width: 100%;
   font-size: 40px;
   background: #9bf1cd;
   font-weight: bolder;

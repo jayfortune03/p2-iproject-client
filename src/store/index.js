@@ -131,7 +131,7 @@ export default new Vuex.Store({
         showConfirmButton: false,
         timer: 1500
       })
-      router.push(`/login`)
+      router.push(`/`)
     },
 
     async register(context, payload) {
@@ -244,6 +244,7 @@ export default new Vuex.Store({
           headers: {access_token: localStorage.getItem(`access_token`)}
         })
         context.commit(`USER_DATA`, userData.data)
+        console.log(userData.data)
       } catch (err) {
         Swal.fire({
           icon: 'error',
