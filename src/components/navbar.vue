@@ -27,8 +27,13 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/register" class="nav-link">
-                            REGISTER
+                        <router-link to="/diagnose" class="nav-link">
+                            DIAGNOSE
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/medicine" class="nav-link">
+                            MEDICINE
                         </router-link>
                     </li>
                 </ul>
@@ -46,7 +51,7 @@ export default {
 <style>
 .navbar {
     padding: 15px 10px;
-    background: #1b4079;
+    background: #466C95;
     border: none;
     border-radius: 20px;
     margin-bottom: 40px;

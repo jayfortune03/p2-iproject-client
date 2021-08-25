@@ -22,6 +22,18 @@ const routes = [
 
     component: () => import( '../views/registerPage.vue')
   },
+  {
+    path: '/diagnose',
+    name: 'Diagnose',
+
+    component: () => import( '../views/diagnosePage.vue')
+  },
+  {
+    path: '/medicine',
+    name: 'Medicine',
+
+    component: () => import( '../views/medicinePage.vue')
+  },
 ]
 
 const router = new VueRouter({

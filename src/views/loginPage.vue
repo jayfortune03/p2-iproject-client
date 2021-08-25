@@ -1,5 +1,5 @@
 <template>
-<div class="jumbotron rounded shadow">
+<div id="login-page" class="jumbotron shadow">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-xl-9 mx-auto">
@@ -56,10 +56,20 @@ export default {
 </script>
 
 <style scoped>
+#login-page {
+  background-size: cover;
+  border-radius: 20px;
+  position: relative;
+  word-break: break-all;
+  background: #759dc7;
+}
+
 .card-img-left {
   width: 35%;
-  background: scroll center url('https://image.freepik.com/free-vector/doctor-character-background_1270-84.jpg');
-  background-size: cover;
+  background: scroll center url('../assets/undraw_medical_research_qg4d.svg');
+  /* background-size: cover; */
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .btn-login {

@@ -5,6 +5,7 @@
     <div id="content">
     <Navbar></Navbar>
     <router-view/>
+    
     </div>
   </div>
     <HFooter></HFooter>

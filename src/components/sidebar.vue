@@ -1,5 +1,5 @@
 <template>
-<nav id="sidebar">
+<nav id="sidebar" class="rounded">
     <div class="sidebar-header">
         <h3>Bootstrap Sidebar</h3>
     </div>
@@ -76,7 +76,7 @@ export default {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background: #5881ad;
     color: #fff;
     transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
     transform-origin: bottom left;
@@ -89,7 +89,7 @@ export default {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #466C95;
 }
 
 #sidebar ul.components {
@@ -108,13 +108,13 @@ export default {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
+    color: #466C95;
     background: #fff;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #6186ad;
 }
 
 
@@ -133,7 +133,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #39628f;
 }
 
 ul.CTAs {
