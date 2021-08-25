@@ -22,11 +22,6 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/login" class="nav-link">
-                            LOGIN
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
                         <router-link to="/diagnose" class="nav-link">
                             DIAGNOSE
                         </router-link>
@@ -44,7 +39,12 @@
 
 <script>
 export default {
-    name: `Navbar`
+    name: `Navbar`,
+    computed: {
+        loginInfo() {
+        return this.$store.state.access_token
+        }
+    }
 }
 </script>
 

@@ -1,54 +1,52 @@
 <template>
 <nav id="sidebar" class="rounded">
     <div class="sidebar-header">
-        <h3>Bootstrap Sidebar</h3>
+        <h3>MEDIQUE</h3>
     </div>
 
     <ul class="list-unstyled components">
-        <p>Dummy Heading</p>
+        <p>A Website where you can diagnose for free!</p>
         <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">HOME</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="#">Home 1</a>
+                    <router-link to="/">
+                        <img src="../assets/20846546501582634781.svg" width="20" length="20">
+                        Home
+                    </router-link>
                 </li>
                 <li>
-                    <a href="#">Home 2</a>
+                    <router-link to="/medicine">
+                        <img src="../assets/3922102181595341171.svg" width="20" length="20">
+                        Medicine
+                    </router-link>
                 </li>
                 <li>
-                    <a href="#">Home 3</a>
+                    <router-link to="/diagnose">
+                        <img src="../assets/17351227651595341160.svg" width="20" length="20">
+                        Diagnose
+                    </router-link>
                 </li>
             </ul>
         </li>
         <li>
-            <a href="#">About</a>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Page 1</a>
-                </li>
-                <li>
-                    <a href="#">Page 2</a>
-                </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
-            </ul>
+            <a href="#">ABOUT</a>
         </li>
         <li>
-            <a href="#">Portfolio</a>
-        </li>
-        <li>
-            <a href="#">Contact</a>
+            <a href="#">MY PROFILE</a>
         </li>
     </ul>
 
-    <ul class="list-unstyled CTAs">
+    <ul class="list-unstyled CTAs" v-if="!loginInfo">
         <li>
-            <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+            <router-link class="download" to="/login">
+                Login
+            </router-link>
         </li>
         <li>
-            <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+            <router-link class="article" to="/register">
+                Register
+            </router-link>
         </li>
     </ul>
 </nav>
@@ -56,7 +54,12 @@
 
 <script>
 export default {
-    name: `Sidebar`
+    name: `Sidebar`,
+    computed: {
+        loginInfo() {
+            return this.$store.state.access_token
+        }
+    }
 }
 </script>
 

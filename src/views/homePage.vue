@@ -36,7 +36,14 @@
 
 <script>
 export default {
-
+  created() {
+    if (localStorage.getItem(`access_token`)) {
+      this.$store.dispatch(`getUserData`)
+      this.$store.dispatch(`getSymptoms`)
+    } else {
+      this.$store.dispatch(`getSymptoms`)
+    }
+  }
 }
 </script>
 
