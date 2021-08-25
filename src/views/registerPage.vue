@@ -71,11 +71,22 @@
 
 <script>
 export default {
-
+    data() {
+        return {
+            registerData: {
+                firstName: ``,
+                lastname: ``,
+                dateOfBirth: ``,
+                gender: ``,
+                email: ``,
+                password: ``
+            }
+        }
+    }
 }
 </script>
 
-<style scoped>
+<style>
 .card-img-left {
   width: 40%;
   /* Link to your background image using in the property below! */

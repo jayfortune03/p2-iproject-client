@@ -20,7 +20,7 @@
                     <div class="form-floating mb-1">
                         <label>Gender</label>
                         <select class="custom-select" v-model="gender">
-                            <option value="" selected hidden disabled> Select Symptoms 1 </option>
+                            <option value="" selected hidden disabled> Select Your Gender </option>
                             <option value="Male"> Male </option>
                             <option value="Female"> Female </option>
                         </select>
@@ -54,7 +54,7 @@
                                 <h4>Checked with {{Math.round(diagnose.Issue.Accuracy)}}% accuracy</h4>
                                 <p>For further notice please visit The doctor with "{{diagnose.Specialisation[0].Name}}" Specialisation</p>
                                 <button id="save-btn" @click.prevent="saveHistory" class="btn btn-lg btn-primary fw-bold text-uppercase" type="button" v-if="loginInfo">Save Diagnose</button>
-                                <button id="cancel-btn" class="btn btn-lg btn-danger fw-bold text-uppercase" type="button" v-if="loginInfo">Cancel</button>
+                                <button id="cancel-btn" @click.prevent="hideModal" class="btn btn-lg btn-danger fw-bold text-uppercase" type="button" v-if="loginInfo">Cancel</button>
                                 <button id="ok-btn" @click.prevent="hideModal" class="btn btn-lg btn-primary fw-bold text-uppercase" type="button" v-if="!loginInfo">Ok</button>
                             </center>
                     </div>
@@ -149,6 +149,13 @@ option {
 .vue-tags-input {
     background: #fbfdff;
     border-radius: 15px;
+    max-width: 100%;
+    border: 1px solid #7d2121;
+    border-radius: 20px;
+}
+
+.ti-input[data-v-61d92e31] {
+    border-radius: 20px !important; 
 }
 
 #result-box {

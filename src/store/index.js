@@ -31,6 +31,9 @@ export default new Vuex.Store({
     },
     DIAGNOSIS_RESULT(state, payload) {
       state.diagnose = payload
+    },
+    LOGOUT_HANDLER(state, payload) {
+      state.access_token = payload
     }
   },
   actions: {
@@ -96,6 +99,23 @@ export default new Vuex.Store({
           timer: 1500
         })
       }
+    },
+
+    async logOut(context, payload) {
+      // payload.auth.signOut()
+      // .then(function () {
+      //   console.log('User signed out.');
+      // });
+      localStorage.removeItem(`access_token`)
+      context.commit(`LOGOUT_HANDLER`, {access_token: null})
+      router.push(`/`)
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Logout Success! ',
+        showConfirmButton: false,
+        timer: 1500
+      })
     },
 
     async getSymptoms(context, payload) {

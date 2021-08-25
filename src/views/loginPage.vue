@@ -101,6 +101,18 @@ export default {
   background: #759dc7;
 }
 
+input[type=text] {
+  max-width: 100%;
+}
+
+input[type=password] {
+  max-width: 100%;
+}
+
+input[type=number] {
+  max-width: 100%;
+}
+
 .card-img-left {
   width: 35%;
   background: scroll center url('../assets/undraw_medical_research_qg4d.svg');

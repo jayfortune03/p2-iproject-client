@@ -5,8 +5,8 @@
     <div id="content">
     <Navbar></Navbar>
     <router-view/>
-    
     </div>
+    <!-- <Search></Search> -->
   </div>
     <HFooter></HFooter>
 </div>
@@ -15,12 +15,14 @@
 <script>
 import Navbar from './components/navbar.vue'
 import Sidebar from './components/sidebar.vue'
+import Search from './components/search.vue'
 import HFooter from 'vue-hacktiv8-footer'
 export default {
   components: {
     Navbar,
     Sidebar,
-    HFooter
+    HFooter,
+    Search
   }
 }
 </script>
