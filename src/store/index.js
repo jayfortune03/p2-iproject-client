@@ -12,8 +12,6 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     access_token: localStorage.getItem(`access_token`),
-    gauthInfo: ``,
-    toggler: ``,
     symptoms: [],
     diagnose: [],
     userData: {}
@@ -36,12 +34,6 @@ export default new Vuex.Store({
     },
     LOGOUT_HANDLER(state, payload) {
       state.access_token = payload.access_token
-    },
-    GAUTH_INFO(state, payload) {
-      state.gauthInfo = payload
-    },
-    TOGGLE_SIDEBAR(state, payload) {
-      state.toggler = payload
     }
   },
   actions: {
@@ -105,7 +97,6 @@ export default new Vuex.Store({
         })
         localStorage.setItem(`access_token`, gauth.data.access_token)
         context.commit(`GAUTH_HANDLER`, {access_token: gauth.data.access_token})
-        context.commit(`GAUTH_INFO`, payload.auth2)
         router.push(`/`)
       } catch (err) {
         Swal.fire({
@@ -178,7 +169,12 @@ export default new Vuex.Store({
         })
         context.commit(`GET_SYMPTOMS`, symptoms.data)
       } catch (err) {
-        console.log(err.response.data.message)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops.. It seems like there is an error ocurring here!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     },
 
@@ -201,7 +197,12 @@ export default new Vuex.Store({
         })
         context.commit(`DIAGNOSIS_RESULT`, diagnosis.data)
       } catch (err) {
-        console.log(err)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops.. It seems like there is an error ocurring here!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     },
 
@@ -226,7 +227,6 @@ export default new Vuex.Store({
           position: "top-right",
         })  
       } catch (err) {
-        console.log(err)
         Swal.fire({
           icon: 'error',
           title: 'Oops.. It seems like there is an error ocurring here!',
@@ -244,7 +244,6 @@ export default new Vuex.Store({
           headers: {access_token: localStorage.getItem(`access_token`)}
         })
         context.commit(`USER_DATA`, userData.data)
-        console.log(userData.data)
       } catch (err) {
         Swal.fire({
           icon: 'error',

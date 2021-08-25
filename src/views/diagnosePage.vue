@@ -48,6 +48,7 @@
                 styles="background: none"
                 classes="jumbotron"
             >
+            <div v-if="diagnoseInfo.length !== 0">
                 <div id="result-box" class="jumbotron" v-for="diagnose in diagnoseInfo" :key="diagnose.ID">
                         <center>
                             <h2>You might have</h2> <br> <br>
@@ -56,14 +57,25 @@
                             <p>For further notice please visit The doctor with "{{diagnose.Specialisation[0].Name}}" Specialisation</p>
                             <div class="d-flex flex-row justify-content-around">
                                 <button id="save-btn" @click.prevent="saveHistory(diagnose)" class="btn btn-lg btn-primary fw-bold text-uppercase" type="button" v-if="loginInfo">Save Diagnose</button>
-                                    <router-link to="/medicine" v-if="loginInfo" class="btn btn-lg btn-secondary fw-bold text-uppercase">
+                                    <router-link id="medicine-btn" to="/medicine" v-if="loginInfo" class="btn btn-lg btn-secondary fw-bold text-uppercase">
                                         Find the Medicine
                                     </router-link>
-                                <button id="cancel-btn" @click.prevent="hideModal" class="btn btn-lg btn-danger fw-bold text-uppercase" type="button" v-if="loginInfo">Cancel</button>
                             </div>
+                            <button id="ok-btn" @click.prevent="hideModal" class="btn btn-lg btn-primary fw-bold text-uppercase" type="button">Ok</button>
+                        </center>
+                </div>
+            </div>
+
+            <div v-else>
+                <div id="result-box" class="jumbotron">
+                        <center>
+                            <h2>Oh No !</h2> <br> <br>
+                            <h4>I'm Sorry I Couldn't find it. Maybe you need to be more specific about the symptoms</h4>
                             <button id="ok-btn" @click.prevent="hideModal" class="btn btn-lg btn-primary fw-bold text-uppercase" type="button" v-if="!loginInfo">Ok</button>
                         </center>
                 </div>
+            </div>
+
             </modal>
     </form>
 </div>
@@ -109,10 +121,10 @@ export default {
                 }
                 this.$store.dispatch(`getDiagnosis`, userData)
                 this.$modal.show('diagnose-result')
+                this.selectedSymptoms = []
+                this.age = ``
+                this.gender = ``
             }
-            this.selectedSymptoms = []
-            this.age = ``
-            this.gender = ``
         },
         hideModal() {
             this.$modal.hide('diagnose-result')
@@ -159,7 +171,7 @@ export default {
 }
 
 #result-box {
-    background-color: #b2cae4;
+    background-color: #c1ecec;
     border-radius: 20px;
 }
 
@@ -180,12 +192,26 @@ h1 {
 }
 
 p {
-    color: white;
+    color: rgb(59, 58, 58);
     text-shadow: gray;
 }
 
 #ok-btn {
     border-radius: 15px;
+    background: #5abebe;
+    font-weight: bolder;
+}
+
+#save-btn {
+    border-radius: 15px;
+    background: #a4dfa9;
+    font-weight: bolder;
+}
+
+#medicine-btn {
+    border-radius: 15px;
+    background: #f19b9b;
+    font-weight: bolder;
 }
 
 .jumbotron {

@@ -41,7 +41,6 @@ export default {
         .then(response => response.json())
         .then(data => {
             this.searchResult = data.items
-            console.log(data)
         })
       this.submitted = true
     }
