@@ -1,15 +1,16 @@
 <template>
-<div id="diagnose-page" class="jumbotron shadow">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-xl-9 mx-auto">
-            <div class="card flex-row my-5 border-0 rounded-lg shadow">
-                <div class="card-body p-4 p-sm-5">
-                <h5 class="card-title text-center mb-5 fw-light fs-5">Diagnose</h5>
-                <small class="card-title text-center mb-5 fw-light fs-5">You can choose up to 5 Symptoms</small> <br> <br>
-                <form @submit.prevent="getDiagnosis">
+<div id="diagnose-page" class="jumbotron">
 
+    <center>
+        <h1><b>DIAGNOSE SECTION</b></h1> <br> <br>
+        <h1>Please tell us what is your symptoms</h1> 
+        <small class="card-title text-center mb-5 fw-light fs-5">( You can choose up to 5 Symptoms )</small> <br> <br> <br>
+    </center>
+
+    <form @submit.prevent="getDiagnosis">
+            <label>Symptoms</label>
                 <vue-tags-input
+                    class="symptoms-input"
                     v-model="symptom"
                     :tags="selectedSymptoms"
                     :allow-edit-tags="true"
@@ -17,66 +18,66 @@
                     @tags-changed="newSymptoms => selectedSymptoms = newSymptoms"
                 ></vue-tags-input>
 
-                    <div class="form-floating mb-1">
-                        <label>Gender</label>
-                        <select class="custom-select" v-model="gender">
-                            <option value="" selected hidden disabled> Select Your Gender </option>
-                            <option value="Male"> Male </option>
-                            <option value="Female"> Female </option>
-                        </select>
-                    </div>
-
-                    <div class="form-floating mb-1">
-                        <label>Age</label>
-                        <input type="number" class="form-control" v-model="age" placeholder="Your Age">
-                    </div>
-
-                    <hr>
-                    <br>
-
-                    <center>
-                    <div class="d-grid mb-2">
-                    <button class="btn btn-lg btn-primary btn-block fw-bold text-uppercase" type="submit">Submit</button>
-                    </div>
-                    </center>
-                    <modal 
-                        name="diagnose-result"
-                        :width="1000"
-                        :height="3000"
-                        :adaptive="true"
-                        :draggable="true"
-                        styles="background: none"
-                        classes="jumbotron"
-                    >
-                    <div id="result-box" class="jumbotron" v-for="diagnose in diagnoseInfo" :key="diagnose.ID">
-                            <center>
-                                <h2>You might have</h2> <br> <br>
-                                <h1 id="diagnose">"{{diagnose.Issue.Name}}"</h1> <br>
-                                <h4>Checked with {{Math.round(diagnose.Issue.Accuracy)}}% accuracy</h4>
-                                <p>For further notice please visit The doctor with "{{diagnose.Specialisation[0].Name}}" Specialisation</p>
-                                <div class="d-flex flex-row w-4 justify-content-around">
-                                    <button id="save-btn" @click.prevent="saveHistory(diagnose)" class="btn btn-lg btn-primary fw-bold text-uppercase" type="button" v-if="loginInfo">Save Diagnose</button>
-                                    <button id="cancel-btn" @click.prevent="hideModal" class="btn btn-lg btn-danger fw-bold text-uppercase" type="button" v-if="loginInfo">Cancel</button>
-                                </div>
-                                <button id="ok-btn" @click.prevent="hideModal" class="btn btn-lg btn-primary fw-bold text-uppercase" type="button" v-if="!loginInfo">Ok</button>
-                            </center>
-                    </div>
-                    </modal>
-                </form>
-                        </div>
-                    </div>
-                    
+                <div class="form-floating mb-1">
+                    <label>Gender</label>
+                    <select required id="floatingGender" class="custom-select" v-model="gender">
+                        <option value="" selected hidden disabled> Select Your Gender </option>
+                        <option value="Male"> Male </option>
+                        <option value="Female"> Female </option>
+                    </select>
                 </div>
+
+                <div class="form-floating mb-1">
+                    <label>Age</label>
+                    <input required id="floatingAge" type="number" class="form-control" v-model="age" placeholder="Your Age">
+                </div>
+
+                <hr>
+                <br>
+        <center>
+            <div class="d-grid mb-2">
+                <button id="submit-btn" class="btn btn-lg btn-primary btn-block fw-bold text-uppercase" type="submit">Submit</button>
             </div>
-        </div>
+        </center>
+            <modal 
+                name="diagnose-result"
+                :width="1000"
+                :height="3000"
+                :adaptive="true"
+                :draggable="true"
+                styles="background: none"
+                classes="jumbotron"
+            >
+                <div id="result-box" class="jumbotron" v-for="diagnose in diagnoseInfo" :key="diagnose.ID">
+                        <center>
+                            <h2>You might have</h2> <br> <br>
+                            <h1 id="diagnose">"{{diagnose.Issue.Name}}"</h1> <br>
+                            <h4>Checked with {{Math.round(diagnose.Issue.Accuracy)}}% accuracy</h4>
+                            <p>For further notice please visit The doctor with "{{diagnose.Specialisation[0].Name}}" Specialisation</p>
+                            <div class="d-flex flex-row justify-content-around">
+                                <button id="save-btn" @click.prevent="saveHistory(diagnose)" class="btn btn-lg btn-primary fw-bold text-uppercase" type="button" v-if="loginInfo">Save Diagnose</button>
+                                    <router-link to="/medicine" v-if="loginInfo" class="btn btn-lg btn-secondary fw-bold text-uppercase">
+                                        Find the Medicine
+                                    </router-link>
+                                <button id="cancel-btn" @click.prevent="hideModal" class="btn btn-lg btn-danger fw-bold text-uppercase" type="button" v-if="loginInfo">Cancel</button>
+                            </div>
+                            <button id="ok-btn" @click.prevent="hideModal" class="btn btn-lg btn-primary fw-bold text-uppercase" type="button" v-if="!loginInfo">Ok</button>
+                        </center>
+                </div>
+            </modal>
+    </form>
 </div>
+
 </template>
 
 <script>
-import VueTagsInput from '@johmun/vue-tags-input';
-import VModal from 'vue-js-modal';
 import Vue from 'vue'
+import VueTagsInput from '@johmun/vue-tags-input';
+import VueToast from 'vue-toast-notification';
+import VModal from 'vue-js-modal';
+import 'vue-toast-notification/dist/theme-sugar.css';
 
+Vue.use(VueToast)
 Vue.use(VModal)
 
 export default {
@@ -94,13 +95,21 @@ export default {
     },
     methods: {
         getDiagnosis() {
-            let userData = {
-                symptoms: this.selectedSymptoms,
-                age: this.age,
-                gender: this.gender
+            if (this.selectedSymptoms.length === 0) {
+                Vue.$toast.open({
+                    message: `Symptoms cannot be Empty`,
+                    type: "error",
+                    position: "top-right",
+                })
+            } else {
+                let userData = {
+                    symptoms: this.selectedSymptoms,
+                    age: this.age,
+                    gender: this.gender
+                }
+                this.$store.dispatch(`getDiagnosis`, userData)
+                this.$modal.show('diagnose-result')
             }
-            this.$store.dispatch(`getDiagnosis`, userData)
-            this.$modal.show('diagnose-result')
             this.selectedSymptoms = []
             this.age = ``
             this.gender = ``
@@ -136,37 +145,17 @@ export default {
 }
 </script>
 
-<style lang='css' scoped>
-.form-control {
-    border-radius: 15px;
-}
-
-.card-body {
-    border-radius: 32px;
-}
-
-.custom-select {
-    border-radius: 15px;
-}
-
-option {
-    border-radius: 15px;
-}
-
-.vm--modal {
-    background: none !important;
-}
+<style scoped>
 
 .vue-tags-input {
-    background: #fbfdff;
-    border-radius: 15px;
+    /* background: #c1ecec; */
     max-width: 100%;
-    border: 1px solid #7d2121;
     border-radius: 20px;
 }
 
-.ti-input[data-v-61d92e31] {
-    border-radius: 20px !important; 
+#submit-btn {
+    background: #6fcaca;
+    outline: #6fcaca;
 }
 
 #result-box {
@@ -176,6 +165,14 @@ option {
 
 #diagnose {
     font-size: 76px;
+}
+
+#floatingGender {
+    border-radius: 20px;
+}
+
+#floatingAge {
+    border-radius: 20px;
 }
 
 h2 {
@@ -189,6 +186,12 @@ p {
 
 #ok-btn {
     border-radius: 15px;
+}
+
+.jumbotron {
+    border-radius: 20px;
+    background: #c1ecec;
+    box-shadow: 10px 10px 5px rgb(184, 179, 179);
 }
 
 </style>

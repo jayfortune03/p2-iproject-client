@@ -30,6 +30,11 @@
                             MEDICINE
                         </router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link to="/about" class="nav-link">
+                            ABOUT US
+                        </router-link>
+                    </li>
                     <li class="nav-item dropdown" v-if="loginInfo">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="45" height="45" class="rounded-circle">

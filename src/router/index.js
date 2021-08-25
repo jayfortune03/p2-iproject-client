@@ -34,6 +34,12 @@ const routes = [
 
     component: () => import( '../views/medicinePage.vue')
   },
+  {
+    path: '/about',
+    name: 'About Us',
+
+    component: () => import( '../views/aboutPage.vue')
+  },
 ]
 
 const router = new VueRouter({

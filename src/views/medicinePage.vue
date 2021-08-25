@@ -1,14 +1,11 @@
 <template>
 <div class="jumbotron">
-
     <center>
     <h1><b>MEDICINE SECTION</b></h1> <br> <br>
-    <h1>Please tell us what is your Diagnose</h1>
+    <h1>Please tell me what is your Diagnose</h1>
     <p>To search, just type "Medicine for <b>'Your Diagnose'</b>" and press <b>Enter</b></p> <br> <br>
     <Search></Search>
     </center>
-<!-- <div class="gcse-search"></div>
-<div class="gcse-searchresults-only"></div> -->
 </div>
 </template>
 
@@ -46,6 +43,7 @@ export default {
 .jumbotron {
     border-radius: 20px;
     background: #f19b9b;
+    box-shadow: 10px 10px 5px rgb(184, 179, 179);
 }
 
 #header {
