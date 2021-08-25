@@ -2,8 +2,8 @@
 <div id="diagnose-page" class="jumbotron">
 
     <center>
-        <h1><b>DIAGNOSE SECTION</b></h1> <br> <br>
-        <h1>Please tell us what is your symptoms</h1> 
+        <h1><b>DIAGNOSE SECTION</b></h1> <br>
+        <h2>Please tell us what is your symptoms</h2> 
         <small class="card-title text-center mb-5 fw-light fs-5">( You can choose up to 5 Symptoms )</small> <br> <br> <br>
     </center>
 
@@ -175,8 +175,8 @@ export default {
     border-radius: 20px;
 }
 
-h2 {
-    font-size: 40px;
+h1 {
+    font-size: 70px;
 }
 
 p {

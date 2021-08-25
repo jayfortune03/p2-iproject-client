@@ -139,6 +139,8 @@ export default {
 
 .nav-item {
     color: aliceblue;
+    font-size: 18px;
+    font-weight: 900;
 }
 
 .navbar-brand {

@@ -39,12 +39,12 @@
 
     <ul class="list-unstyled CTAs" v-if="!loginInfo">
         <li>
-            <router-link class="download" to="/login">
+            <router-link class="login" to="/login">
                 Login
             </router-link>
         </li>
         <li>
-            <router-link class="article" to="/register">
+            <router-link class="register" to="/register">
                 Register
             </router-link>
         </li>
@@ -151,13 +151,15 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-a.download {
-    background: #fff;
-    color: #7386D5;
+a.login {
+    background: #90b7e0;
+    color: #d9def5;
+    font-weight: bolder;
 }
 
-a.article, a.article:hover {
-    background: #6d7fcc !important;
-    color: #fff !important;
+a.register, a.article:hover {
+    background: #6293c7 !important;
+    color: #d1dae4 !important;
+    font-weight: bolder;
 }
 </style>

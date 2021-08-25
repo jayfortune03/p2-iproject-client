@@ -1,8 +1,8 @@
 <template>
 <div class="jumbotron">
     <center>
-    <h1><b>MEDICINE SECTION</b></h1> <br> <br>
-    <h1>Please tell me what is your Diagnose</h1>
+    <h1><b>MEDICINE SECTION</b></h1> <br>
+    <h2>Please tell me what is your Diagnose</h2>
     <p>To search, just type "Medicine for <b>'Your Diagnose'</b>" and press <b>Enter</b></p> <br> <br>
     <Search></Search>
     </center>
@@ -10,28 +10,9 @@
 </template>
 
 <script>
-import axios from 'axios'
 import Search from '../components/search.vue'
 export default {
     methods: {
-        doSearch: function(){
-            var app = this;
-            let searchQuery = `Panadol`
-
-            if (searchQuery != undefined && searchQuery !== "") {
-                let API_KEY = "AIzaSyBAEEvhRcBk8FVOmxv6jJON2VhMUpqQgI8";
-                let CSE_ID = "000680021646118888977:u60wgdclz_0";
-                axios.get('https://www.googleapis.com/customsearch/v1?key='+API_KEY+'&cx='+CSE_ID+'&q=' + searchQuery)
-                    .then(function (response) {
-                        // app.searchResult = response.data;
-                        console.log(response.data);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-            }
-        }
-            //console.log(this.q);
     },
     components: {
         Search
@@ -55,6 +36,10 @@ export default {
 #styling {
     border-radius: 20px;
     background: #ffffff;
+}
+
+h1 {
+    font-size: 70px;
 }
 
 p {

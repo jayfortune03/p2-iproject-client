@@ -1,5 +1,5 @@
 <template>
-  <div id="about-page" class="jumbotron">
+<div id="about-page" class="jumbotron">
     <center>
     <h1><b>ABOUT US</b></h1> <br> <br>
     <h3>Hi there ! Thanks for visiting our website!</h3> <br> <br>
@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 #about-page {
-    background: #EDF6E5;
+    background: #CEE5D0;
     border-radius: 20px;
     box-shadow: 10px 10px 5px rgb(184, 179, 179);
 }
@@ -30,5 +30,4 @@ p {
     color: white;
     text-shadow: gray;
 }
-
 </style>
