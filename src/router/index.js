@@ -50,7 +50,7 @@ const routes = [
     path: '*',
     name: 'Not Found',
 
-    component: () => import( '../views/404.vue')
+    component: () => import( '../components/404.vue')
   }
 ]
 
