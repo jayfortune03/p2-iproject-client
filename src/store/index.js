@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueToast from 'vue-toast-notification';
-import {baseServer, apiMedicServer, apiMedicToken} from '../apis'
+import {baseServer, apiMedicServer, apiMedicToken} from '../apis/apis'
 import router from '../router/index'
 import 'vue-toast-notification/dist/theme-sugar.css';
 

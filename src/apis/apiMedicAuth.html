@@ -1,0 +1,10 @@
+<script src="http://authservice.priaid.ch/js/hmac-md5.js"></script>
+<script src="http://authservice.priaid.ch/js/enc-base64-min.js"></script>
+<script>
+    var uri = "https://authservice.priaid.ch/login";
+    var secret_key = "n5ADp67JmPr28Ftj4"
+    var computedHash = CryptoJS.HmacMD5(uri, secret_key);
+    var computedHashString = computedHash.toString(CryptoJS.enc.Base64);
+    console.log(computedHashString)
+
+</script>
