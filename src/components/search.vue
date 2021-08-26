@@ -8,7 +8,7 @@
         v-on:keyup.enter="submit"
     >
     <div v-if="submitted == true">
-      <h2 class="querySearch">Search results for : "{{ Query }}"" </h2>
+      <h2 class="querySearch">Search results for : "{{ Query }}" </h2>
         <Cards 
             v-for="content in searchResult" 
             :key="content.title"

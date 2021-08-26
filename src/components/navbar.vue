@@ -39,6 +39,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img v-if="userData.gender === 'Male'" src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg" width="45" height="45" class="rounded-circle">
                             <img v-if="userData.gender === 'Female'" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0sCAvrW1yFi0UYMgTZb113I0SwtW0dpby8Q&usqp=CAU" width="45" height="45" class="rounded-circle">
+                            <img v-if="userData.gender === 'Unknown'" src="https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-social-media-user-vector-portrait-unknown-human-image-default-avatar-profile-flat-icon-184330869.jpg" width="45" height="45" class="rounded-circle">
                             <!-- <img v-if="profileImg" :src="profileImg" width="45" height="45" class="rounded-circle"> -->
                         </a>
                         <div class="dropdown-menu dropdown-menu-right rounded" aria-labelledby="navbarDropdownMenuLink">

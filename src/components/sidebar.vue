@@ -5,7 +5,7 @@
     </div>
 
     <ul class="list-unstyled components">
-        <p>A Website where you can diagnose for free!</p>
+        <p>A Website where you can diagnose and find all medicines for free!</p>
         <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">HOME</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
