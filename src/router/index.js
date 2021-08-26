@@ -45,6 +45,12 @@ const routes = [
     name: 'My Profile',
 
     component: () => import( '../views/profilePage.vue')
+  },
+  {
+    path: '*',
+    name: 'Not Found',
+
+    component: () => import( '../views/404.vue')
   }
 ]
 
